@@ -1,5 +1,4 @@
-#WarBase
-##a low-level World of Warcraft library
+#WarBase: a low-level World of Warcraft library
 
 1. enum-like structures for core game types: StatT, RaceT, ClassT, SpecT, EquipT, ...
 2. storage objects for types: StatAlloc, StatMap, RandomSuffix, RandomSuffixGroup, ...
