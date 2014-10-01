@@ -26,8 +26,10 @@ public class StatId {
         SPEED   = new StatT(101, null,  "Movement Speed",  "%+d%% Speed",   Category.CUSTOM,      false),
     */
     
+    static public final int INVALID = -1;
+    
+    static public final int MANA = 0; // uh
     static public final int HEALTH = 1;
-    static public final int MANA = 2;
     static public final int AGILITY = 3;
     static public final int STRENGTH = 4;
     static public final int INTELLECT = 5;
@@ -36,6 +38,14 @@ public class StatId {
     static public final int DODGE = 13;
     static public final int PARRY = 14;
     static public final int BLOCK = 15;
+    
+    static public final int CRIT_MELEE = 19; // old
+    static public final int CRIT_RANGE = 20; // old
+    static public final int CRIT_SPELL = 21; // old
+    static public final int HASTE_MELEE = 28; // old
+    static public final int HASTE_RANGE = 29; // old
+    static public final int HASTE_SPELL = 30; // old
+    
     static public final int HIT = 31;
     static public final int CRIT = 32;
     static public final int PVP_RESILIENCE = 35;
@@ -81,7 +91,20 @@ public class StatId {
     static public final int ALL_RESIST      = 76;
     static public final int DAMAGE          = 77;
     
-    
+    static public int convert(int id) {
+        switch (id) {
+            case CRIT_MELEE:
+            case CRIT_RANGE:
+            case CRIT_SPELL:
+                return CRIT;    
+            case HASTE_MELEE:
+            case HASTE_SPELL:
+            case HASTE_RANGE:
+                return HASTE;
+            default: 
+                return id;
+        }
+    }
     
     static public boolean isDead(int id) {
         switch (id) {            

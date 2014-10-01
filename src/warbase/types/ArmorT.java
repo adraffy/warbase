@@ -18,7 +18,8 @@ public class ArmorT extends TypeT {
     static public final ArmorT SHIELD    = new ArmorT(6, "Shield",  -1);
 
     static public final BitContainer<ArmorT> db = new BitContainer<>(ArmorT.class);
-
-    static public final long TRIVIAL = db.encode(NONE, COSMETIC);
+    static public final BlizzBit<ArmorT> blizzBits = new BlizzBit<>(ArmorT.class);
+    
+    static public final long TRIVIAL = db.encode(NONE, COSMETIC);    
     
 }

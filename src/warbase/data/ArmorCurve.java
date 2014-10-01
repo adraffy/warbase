@@ -12,7 +12,7 @@ public class ArmorCurve {
                 if (itemLevel < 1 && itemLevel > Shield.data.length) {
                     throw new IllegalArgumentException("Invalid Item Level: " + itemLevel);
                 }
-                return (int)(0.5 + quality.armorMod * Shield.data[(itemLevel - 1) * 7 + quality.id]);
+                return (int)(0.5 + quality.armorMod * Shield.data[(itemLevel - 1) * 7 + quality.index]);
             }           
             return 0;
         } 

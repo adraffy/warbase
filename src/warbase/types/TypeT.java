@@ -123,6 +123,7 @@ abstract public class TypeT {
         final ToIntFunction<T> f;
         final Assoc<T> assoc;
         final int allMask;
+        BlizzBit(Class<T> cls) { this(cls, x -> 1 << x.id); }            
         BlizzBit(Class<T> cls, ToIntFunction<T> f) {
             assoc = assoc(cls, f, getClass().getSimpleName());
             this.f = f;

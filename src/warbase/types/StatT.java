@@ -33,7 +33,8 @@ abstract public class StatT extends TypeT {
         }
     }
     
-    static public final Fundamental HEALTH = new Fundamental(StatId.HEALTH,             "Health", null, "HP");
+    static public final Fundamental MP = new Fundamental(StatId.MANA,             "Mana", null, "MP");
+    static public final Fundamental HP = new Fundamental(StatId.HEALTH,             "Health", null, "HP");
     
     static public final Fundamental STA     = new Fundamental(StatId.STAMINA,               "Stamina", null, "Sta");
     static public final Fundamental AGI     = new Fundamental(StatId.AGILITY,               "Agility", null, "Agi");

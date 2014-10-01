@@ -62,5 +62,6 @@ public class EquipT extends TypeT {
     }
     
     static public final BitContainer<EquipT> db = new BitContainer<>(EquipT.class);
+    static public final BlizzBit<EquipT> blizzBits = new BlizzBit<>(EquipT.class);
     
 }

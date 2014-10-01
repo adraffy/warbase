@@ -13,6 +13,7 @@ public class Main {
         System.out.println(RaceT.NE.classes());
         System.out.println(RaceT.NE.specs());
         
+        System.out.println(StatT.db.size());
                 
         System.out.println("Red gem matches sockets: " + GemT.RED.sockets(true));
         // Red gem matches sockets: [Red, Prismatic]
