@@ -4,17 +4,17 @@ import java.util.function.Consumer;
 
 public class ProfT extends TypeT {
     
-    public final String shortName;
+    public final String tinyName;
 
     static private int _index;
-    public ProfT(int id, String name, String shortName) {
+    public ProfT(int id, String name, String tinyName) {
         super(_index++, id, name);
-        this.shortName = shortName;
+        this.tinyName = tinyName;
     }
     
     @Override
     void registerNames(Consumer<String> c) {
-        c.accept(shortName);
+        c.accept(tinyName);
     }
 
     static public final ProfT ENCH      = new ProfT(333, "Enchanting",      "Ench");
@@ -28,6 +28,8 @@ public class ProfT extends TypeT {
     static public final ProfT ALCH      = new ProfT(171, "Alchemy",         "Alch");
     static public final ProfT HERB      = new ProfT(182, "Herbalism",       "Herb");
     static public final ProfT MINE      = new ProfT(186, "Mining",          "Mine");
+    
+    static public final ProfT FISH      = new ProfT(356, "Fishing",         "Fish");
         
     static public final BitContainer<ProfT> db = new BitContainer<>(ProfT.class);    
     static public final TypeNames<ProfT> names = new TypeNames<>(db.types);

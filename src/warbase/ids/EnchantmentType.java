@@ -21,5 +21,9 @@ public class EnchantmentType {
     static public final int STAT = 5;
     static public final int TOTEM = 6;
     static public final int USE_SPELL = 7;
-   
+    
+    // fake
+    static public final int SKILL = 20;
+    static public final int MOVEMENT_SPEED = 21;
+    
 }

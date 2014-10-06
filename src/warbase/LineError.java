@@ -8,6 +8,8 @@ public class LineError {
     public final String line;
     public final String error;
     
+    
+    public LineError(String error) { this(-1, null, error); }
     public LineError(int lineno, String line, String error) {
         this.lineno = lineno;
         this.line = line;
@@ -24,12 +26,15 @@ public class LineError {
         sb.append("<html>");
         sb.append("Please fix the following errors:");  
         for (LineError x: errors) {
-            sb.append("<br/><b>Line ");
-            sb.append(x.lineno);
-            sb.append("</b><br/>");
-            sb.append("<tt>");
-            sb.append(x.line);
-            sb.append("</tt><br/>");
+            sb.append("<br/>");
+            if (x.lineno >= 0) {
+                sb.append("<b>Line ");
+                sb.append(x.lineno);
+                sb.append("</b><br/>");
+                sb.append("<tt>");
+                sb.append(x.line);
+                sb.append("</tt><br/>");
+            }
             sb.append(x.error);
         }
         sb.append("</html>");

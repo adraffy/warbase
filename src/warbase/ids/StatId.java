@@ -90,6 +90,13 @@ public class StatId {
     static public final int ALL_STATS       = 75; // fake
     static public final int ALL_RESIST      = 76;
     static public final int DAMAGE          = 77;
+    static public final int SPEED_PERC      = 78;
+    
+    static public final int SPELL_POWER_FIRE    = 79;
+    static public final int SPELL_POWER_NATURE  = 80;
+    static public final int SPELL_POWER_SHADOW  = 81;
+    static public final int SPELL_POWER_ARCANE  = 82;
+    static public final int SPELL_POWER_FROST   = 83;
     
     static public int convert(int id) {
         switch (id) {

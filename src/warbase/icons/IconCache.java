@@ -105,11 +105,12 @@ public class IconCache {
         });
     }
         
-    public ImageIcon get(String key, Callback cb) {        
+    public void get(String key, Callback cb) {        
         synchronized (guard) {
             ImageIcon store = map.get(key);
             if (store != null && store != requested) {
-                return store;                
+                cb.got(key, null, store);    
+                return;
             }  
             if (store == null) {
                 map.put(key, requested);                
@@ -123,7 +124,7 @@ public class IconCache {
                 }
                 set.add(cb);                
             }
-            return blank;
+            cb.got(key, null, blank);
         }
     } 
     

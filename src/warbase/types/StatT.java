@@ -14,6 +14,13 @@ abstract public class StatT extends TypeT {
         this.shortName = shortName != null ? shortName : this.name;
         this.tinyName = tinyName != null ? tinyName : this.shortName;
     }
+    
+    public void appendValue(StringBuilder sb, int value) {
+        if (value >= 0) {
+            sb.append('+');
+        }
+        sb.append(value);
+    }
         
     static public class Fundamental extends StatT {
         public final ArrayList<StatT> sources = new ArrayList<>();
@@ -51,12 +58,12 @@ abstract public class StatT extends TypeT {
     static public final Fundamental AP   = new Fundamental(StatId.ATTACK_POWER, "Attack Power", "AP", null);
     static public final Fundamental SP   = new Fundamental(StatId.SPELL_POWER, "Spell Power", "SP", null);
     
-    static public final Fundamental RESIST_FIRE     = new Fundamental(StatId.RESIST_FIRE,   "Fire Resistance", "Fire", null);
-    static public final Fundamental RESIST_ARCANE   = new Fundamental(StatId.RESIST_ARCANE, "Arcane Resistance", "Arcane", null);
-    static public final Fundamental RESIST_FROST    = new Fundamental(StatId.RESIST_FROST,  "Frost Resistance", "Frost", null);
-    static public final Fundamental RESIST_SHADOW   = new Fundamental(StatId.RESIST_SHADOW, "Shadow Resistance", "Shadow", null);
-    static public final Fundamental RESIST_HOLY     = new Fundamental(StatId.RESIST_HOLY,   "Holy Resistance", "Holy", null);
-    static public final Fundamental RESIST_NATURE   = new Fundamental(StatId.RESIST_NATURE, "Nature Resistance", "Nature", null);
+    static public final Fundamental RESIST_FIRE     = new Fundamental(StatId.RESIST_FIRE,   "Fire Resistance", "Fire Resist", null);
+    static public final Fundamental RESIST_ARCANE   = new Fundamental(StatId.RESIST_ARCANE, "Arcane Resistance", "Arcane Resist", null);
+    static public final Fundamental RESIST_FROST    = new Fundamental(StatId.RESIST_FROST,  "Frost Resistance", "Frost Resist", null);
+    static public final Fundamental RESIST_SHADOW   = new Fundamental(StatId.RESIST_SHADOW, "Shadow Resistance", "Shadow Resist", null);
+    static public final Fundamental RESIST_HOLY     = new Fundamental(StatId.RESIST_HOLY,   "Holy Resistance", "Holy Resist", null);
+    static public final Fundamental RESIST_NATURE   = new Fundamental(StatId.RESIST_NATURE, "Nature Resistance", "Nature Resist", null);
     
     static public final Fundamental HASTE     = new Fundamental(StatId.HASTE,          "Haste", null, null);
     static public final Fundamental CRIT      = new Fundamental(StatId.CRIT,           "Critical Strike", "Crit", null);
@@ -78,8 +85,22 @@ abstract public class StatT extends TypeT {
     
     // fake
     static public final Basket ALL_STATS = new Basket(StatId.ALL_STATS, "All Stats", "Stats", null, AGI, STR, INT, STA, SPI);
-    static public final Basket ALL_RESIST = new Basket(StatId.ALL_RESIST, "All Resistances", "Resist", null, RESIST_FIRE, RESIST_ARCANE, RESIST_FROST, RESIST_SHADOW, RESIST_HOLY, RESIST_NATURE);
+    static public final Basket ALL_RESIST = new Basket(StatId.ALL_RESIST, "All Resistances", "All Resist", null, RESIST_FIRE, RESIST_ARCANE, RESIST_FROST, RESIST_SHADOW, RESIST_HOLY, RESIST_NATURE);
     static public final Fundamental DAMAGE = new Fundamental(StatId.DAMAGE, "Melee Damage", "Damage", null);
+    
+    static public final Fundamental SPEED_PERC = new Fundamental(StatId.SPEED_PERC, "Movement Speed", "Speed", null) {
+        @Override
+        public void appendValue(StringBuilder sb, int value) {
+            super.appendValue(sb, value);
+            sb.append("%");
+        }        
+    };
+    
+    static public final Fundamental SP_FROST    = new Fundamental(StatId.SPELL_POWER_FROST,  "Frost Damage",  null, null);
+    static public final Fundamental SP_FIRE     = new Fundamental(StatId.SPELL_POWER_FIRE,   "Fire Damage",   null, null);
+    static public final Fundamental SP_SHADOW   = new Fundamental(StatId.SPELL_POWER_SHADOW, "Shadow Damage", null, null);
+    static public final Fundamental SP_ARCANE   = new Fundamental(StatId.SPELL_POWER_ARCANE, "Arcane Damage", null, null);
+    static public final Fundamental SP_NATURE   = new Fundamental(StatId.SPELL_POWER_NATURE, "Nature Damage", null, null);
     
     //static public final BitContainer<Fundamental> fundamental = new BitContainer<>(Fundamental.class);    
     

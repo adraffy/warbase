@@ -63,7 +63,7 @@ public class IntSet {
     }
     
     public boolean any()   { return num > 0; }
-    public boolean empty() { return num == 0; }
+    public boolean isEmpty() { return num == 0; }
     
     
     private int at(int key) {

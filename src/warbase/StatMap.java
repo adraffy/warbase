@@ -9,8 +9,7 @@ public class StatMap {
     //long mask;
     static private StatT[] STATS = StatT.db.types;
     
-    final int[] total = new int[STATS.length];
-    
+    final int[] total = new int[STATS.length];    
  
     public void add(StatT stat, int value) {        
         total[stat.index] += value;
@@ -64,16 +63,10 @@ public class StatMap {
                 } else {
                     sb.append(", ");
                 }
-                if (t > 0) {
-                    sb.append("+");
-                }
-                sb.append(t);
+                StatT stat = STATS[i];
+                stat.appendValue(sb, t);
                 sb.append(" ");
-                if (compact) {
-                    sb.append(STATS[i].tinyName);
-                } else {
-                    sb.append(STATS[i].shortName);
-                }
+                sb.append(compact ? stat.tinyName : stat.shortName);
             }
         }    
         if (first == true) {
