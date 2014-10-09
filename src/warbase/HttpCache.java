@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.Arrays;
-import warbase.WarBaseUtils;
+import warbase.Misc;
 
 public class HttpCache {
 
@@ -159,7 +159,7 @@ public class HttpCache {
             if (nameOverride != null) {
                 pos = nameOverride.indexOf("#");
                 if (pos >= 0) {
-                    nameOverride = nameOverride.replace("#", WarBaseUtils.SHA1_hexString(u));
+                    nameOverride = nameOverride.replace("#", SHA1.hexString(u));
                 }
             }
         }

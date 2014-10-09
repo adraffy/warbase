@@ -62,12 +62,15 @@ public class IntSet {
         num = 0;
     }
     
-    public boolean any()   { return num > 0; }
     public boolean isEmpty() { return num == 0; }
-    
     
     private int at(int key) {
         return Arrays.binarySearch(keys, 0, num, key);
+    }
+    
+    public void set(IntSet set) {
+        clear();
+        add(set);
     }
     
     public int add(IntSet set) {

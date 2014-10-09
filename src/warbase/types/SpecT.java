@@ -4,6 +4,7 @@ public class SpecT extends TypeT {
     
     public final int specIndex;
     public final ClassT classType;
+    public final String fullName;
     public final ArmorT armorType;
     public final StatT primaryStat; // specialization, kicks in at level 50
     public final StatT attuneRating; // attunement, kicks in at level 90
@@ -20,10 +21,8 @@ public class SpecT extends TypeT {
         this.attuneRating = attuneRating;
         this.canDualWield = canDualWield;
         this.role = role;
+        fullName = name + " " + classType.name;
     }
-    
-    
-    
         
     static public final SpecT BLOOD        = new SpecT(250, 0, "Blood",           ClassT.DK,     ArmorT.PLATE, StatT.STR, StatT.MULTI, true, SpecRoleT.TANK);
     static public final SpecT FROST_DK     = new SpecT(251, 1, "Frost",           ClassT.DK,     ArmorT.PLATE, StatT.STR, StatT.HASTE, true, SpecRoleT.DAMAGE);

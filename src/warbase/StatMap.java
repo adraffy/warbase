@@ -11,6 +11,12 @@ public class StatMap {
     
     final int[] total = new int[STATS.length];    
  
+    public void add(StatMap other) {
+        for (int i = 0; i < total.length; i++) {
+            total[i] += other.total[i];
+        }
+    }
+    
     public void add(StatT stat, int value) {        
         total[stat.index] += value;
     }
@@ -25,6 +31,10 @@ public class StatMap {
     
     public void clear() {
         Arrays.fill(total, 0);
+    }
+    
+    public boolean isSame(StatMap other) {
+        return other != null && Arrays.equals(total, other.total);
     }
     
     public int nonZeroCount() {
@@ -53,7 +63,13 @@ public class StatMap {
         return total[stat.index];
     }
     
-    public void appendTo(StringBuilder sb, boolean compact) {
+    public String getDesc(boolean tiny) {
+        StringBuilder sb = new StringBuilder();
+        appendTo(sb, tiny);
+        return sb.toString();
+    }
+    
+    public void appendTo(StringBuilder sb, boolean tiny) {
         boolean first = true;
         for (int i = 0; i < total.length; i++) {
             int t = total[i];
@@ -66,13 +82,14 @@ public class StatMap {
                 StatT stat = STATS[i];
                 stat.appendValue(sb, t);
                 sb.append(" ");
-                sb.append(compact ? stat.tinyName : stat.shortName);
+                sb.append(tiny ? stat.tinyName : stat.shortName);
             }
         }    
         if (first == true) {
             sb.append("None");
         }
     }
+    
     
     @Override
     public String toString() {

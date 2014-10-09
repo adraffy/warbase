@@ -21,8 +21,7 @@ public class RandomSuffix {
     public String toString() {
         return String.format("%s<%d>(\"%s\")", getClass().getSimpleName(), id, name);
     }
-    
-    
-    static final ToIntFunction<RandomSuffix> ID = x -> x.id;
+        
+    //static final ToIntFunction<RandomSuffix> ID = x -> x.id;
     
 }

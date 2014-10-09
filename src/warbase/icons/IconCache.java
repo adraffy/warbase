@@ -32,8 +32,14 @@ public class IconCache {
         void got(String key, String error, ImageIcon icon);
     }
     
-    static public Callback swingSafeCallback(Consumer<ImageIcon> c) {
-        return (key, error, icon) -> SwingUtilities.invokeLater(() -> c.accept(icon));            
+    static public Callback swingCallback(Consumer<ImageIcon> c) {
+        return (key, error, icon) -> {
+            if (SwingUtilities.isEventDispatchThread()) {
+                c.accept(icon);
+            } else {
+                SwingUtilities.invokeLater(() -> c.accept(icon));   
+            }            
+        };
     }
     
     static private final ImageIcon requested = new ImageIcon();

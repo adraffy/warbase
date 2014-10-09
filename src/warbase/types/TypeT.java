@@ -148,6 +148,13 @@ abstract public class TypeT {
             }
             return mask;            
         }
+        public int encode(T... types) {
+            int blizzMask = 0;
+            for (T x: types) {
+                blizzMask |= f.applyAsInt(x);            
+            }   
+            return blizzMask;
+        }
         public int encode(long mask) {
             int blizzMask = 0;
             for (T x: assoc.types) {

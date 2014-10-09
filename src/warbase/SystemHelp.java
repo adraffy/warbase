@@ -3,11 +3,15 @@ package warbase;
 import java.awt.Desktop;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URI;
 import java.nio.file.Path;
+import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 
 public class SystemHelp {
     
@@ -15,10 +19,12 @@ public class SystemHelp {
     static public final boolean WIN;
     static {
         String sys = System.getProperty("os.name");
-        MAC = sys.contains("Mac");
+        MAC = sys.contains("Mac") || sys.contains("OS X");
         WIN = sys.contains("Windows");
     }
            
+    static public final int ACCELERATOR_MASK = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    
     static public boolean isRetina() {
         GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         try {
@@ -34,6 +40,7 @@ public class SystemHelp {
 	}
     }
     
+    
     static public boolean openFile(Object obj) {
         File f;
         if (obj instanceof File) {
@@ -45,7 +52,7 @@ public class SystemHelp {
         } else {
             return false;
         }
-        if (f.isDirectory() && WIN) {
+        if (WIN && f.isDirectory()) {
             try {
                 Process proc = Runtime.getRuntime().exec("explorer /root," + f.getAbsolutePath());
                 try {

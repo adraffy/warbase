@@ -10,8 +10,8 @@ public class Main {
         
         System.out.println(ClassT.DRUID.specs);
         System.out.println(ClassT.DRUID.races);
-        System.out.println(RaceT.NE.classes());
-        System.out.println(RaceT.NE.specs());
+        System.out.println(RaceT.NE.getClasses());
+        System.out.println(RaceT.NE.getSpecs());
         
         System.out.println(StatT.db.size());
                 

@@ -13,11 +13,11 @@ public class RaceT extends TypeT {
         this.faction = faction;
     }
         
-    public ArrayList<ClassT> classes() {
+    public ArrayList<ClassT> getClasses() {
         return ClassT.db.select(x -> memberOf(x.allowedRaces));
     }
     
-    public ArrayList<SpecT> specs() {
+    public ArrayList<SpecT> getSpecs() {
         return SpecT.db.select(x -> memberOf(x.classType.allowedRaces));
     }
 

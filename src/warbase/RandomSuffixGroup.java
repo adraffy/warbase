@@ -13,7 +13,20 @@ public class RandomSuffixGroup {
     }
     
     public int find(int id) {
-        return WarBaseUtils.binarySearch(suffixes, RandomSuffix.ID, id);
+        int a = 0;
+        int b = suffixes.length;
+        while (a < b) {
+            int m = (a + b) >>> 1;
+            int k = suffixes[m].id;
+            if (k == id) {
+                return m;
+            } else if (k > id) {
+                b = m;
+            } else {
+                a = m + 1;
+            }
+        }
+        return -1; //~a;
     }
     
     public boolean contains(int id) {

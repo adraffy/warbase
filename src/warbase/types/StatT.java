@@ -15,6 +15,14 @@ abstract public class StatT extends TypeT {
         this.tinyName = tinyName != null ? tinyName : this.shortName;
     }
     
+    public String formatValue(int value) {
+        StringBuilder sb = new StringBuilder(24);
+        appendValue(sb, value);
+        sb.append(" ");
+        sb.append(shortName);
+        return sb.toString();
+    }
+    
     public void appendValue(StringBuilder sb, int value) {
         if (value >= 0) {
             sb.append('+');

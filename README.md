@@ -14,7 +14,7 @@ System.out.println(ClassT.DRUID.races);
 // [Night Elf, Worgen, Tauren, Troll]
 
 // what classes can tauren be?
-System.out.println(RaceT.TAUREN.races());
+System.out.println(RaceT.TAUREN.getRaces());
 // [Druid]
 
 // what is Feral's...
@@ -58,8 +58,8 @@ StatMap map = new StatMap();
 map.add(StatT.AGI_INT, 90);
 map.add(StatT.ALL_STATS, 10);
 map.add(StatT.AGI, 40);
-System.out.println(StatT.get(StatT.AGI)); // = 40
-System.out.println(StatT.getEffective(StatT.AGI)); // = 140 (90+10+40)
+System.out.println(map.get(StatT.AGI)); // = 40
+System.out.println(map.getEffective(StatT.AGI)); // = 140 (90+10+40)
 
 ```
 
@@ -91,7 +91,6 @@ SystemHelp.isRetina();
 
 ```
 SystemHelp contains random garbage for interacting with different operating systems.
-
 
 ###HttpCache
 ```java
