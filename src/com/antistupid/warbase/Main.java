@@ -1,5 +1,7 @@
 package com.antistupid.warbase;
 
+import com.antistupid.warbase.stats.StatMap;
+import com.antistupid.warbase.stats.CompactBaseStats;
 import com.antistupid.warbase.types.GemT;
 import com.antistupid.warbase.types.RaceT;
 import com.antistupid.warbase.types.SocketT;

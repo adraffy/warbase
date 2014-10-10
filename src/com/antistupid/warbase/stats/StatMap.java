@@ -1,4 +1,4 @@
-package com.antistupid.warbase;
+package com.antistupid.warbase.stats;
 
 import java.util.Arrays;
 import com.antistupid.warbase.types.StatT;

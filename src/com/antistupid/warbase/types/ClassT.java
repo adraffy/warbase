@@ -1,7 +1,7 @@
 package com.antistupid.warbase.types;
 
-import com.antistupid.warbase.CompactBaseStats;
-import com.antistupid.warbase.StatMap;
+import com.antistupid.warbase.stats.CompactBaseStats;
+import com.antistupid.warbase.stats.StatMap;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
