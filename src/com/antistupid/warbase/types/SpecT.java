@@ -61,13 +61,13 @@ public class SpecT extends TypeT {
     static public final SpecT ENH          = new SpecT(263, 1, "Enhancement",     ClassT.SHAMAN, ArmorT.MAIL, StatT.AGI, StatT.HASTE, true, SpecRoleT.DAMAGE);
     static public final SpecT RESTO_SHAMAN = new SpecT(264, 2, "Restoration",     ClassT.SHAMAN, ArmorT.MAIL, StatT.INT, StatT.MASTERY, false, SpecRoleT.HEAL);   
 
-    static public final SpecT AFF          = new SpecT(265, 0, "Affliction",      ClassT.WARLOCK, ArmorT.CLOTH, StatT.INT, StatT.HASTE, false, SpecRoleT.DAMAGE);
-    static public final SpecT DEMON        = new SpecT(266, 1, "Demonology",      ClassT.WARLOCK, ArmorT.CLOTH, StatT.INT, StatT.MASTERY, false, SpecRoleT.DAMAGE);
-    static public final SpecT DEST         = new SpecT(267, 2, "Destruction",     ClassT.WARLOCK, ArmorT.CLOTH, StatT.INT, StatT.CRIT, false, SpecRoleT.DAMAGE);   
+    static public final SpecT AFF          = new SpecT(265, 0, "Affliction",      ClassT.LOCK, ArmorT.CLOTH, StatT.INT, StatT.HASTE, false, SpecRoleT.DAMAGE);
+    static public final SpecT DEMON        = new SpecT(266, 1, "Demonology",      ClassT.LOCK, ArmorT.CLOTH, StatT.INT, StatT.MASTERY, false, SpecRoleT.DAMAGE);
+    static public final SpecT DEST         = new SpecT(267, 2, "Destruction",     ClassT.LOCK, ArmorT.CLOTH, StatT.INT, StatT.CRIT, false, SpecRoleT.DAMAGE);   
 
-    static public final SpecT ARMS         = new SpecT( 71, 0, "Arms",            ClassT.WARRIOR, ArmorT.PLATE, StatT.STR, StatT.MASTERY, true, SpecRoleT.DAMAGE);
-    static public final SpecT FURY         = new SpecT( 72, 1, "Fury",            ClassT.WARRIOR, ArmorT.PLATE, StatT.STR, StatT.CRIT, true, SpecRoleT.DAMAGE);
-    static public final SpecT PROT         = new SpecT( 73, 2, "Protection",      ClassT.WARRIOR, ArmorT.PLATE, StatT.STR, StatT.MASTERY, true, SpecRoleT.TANK); 
+    static public final SpecT ARMS         = new SpecT( 71, 0, "Arms",            ClassT.WAR, ArmorT.PLATE, StatT.STR, StatT.MASTERY, true, SpecRoleT.DAMAGE);
+    static public final SpecT FURY         = new SpecT( 72, 1, "Fury",            ClassT.WAR, ArmorT.PLATE, StatT.STR, StatT.CRIT, true, SpecRoleT.DAMAGE);
+    static public final SpecT PROT         = new SpecT( 73, 2, "Protection",      ClassT.WAR, ArmorT.PLATE, StatT.STR, StatT.MASTERY, true, SpecRoleT.TANK); 
         
     
     static public final Container<SpecT> db = new Container<>(SpecT.class);

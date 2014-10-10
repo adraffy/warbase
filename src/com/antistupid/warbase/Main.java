@@ -12,6 +12,16 @@ public class Main {
  
         //System.out.println(EquipT.CHEST.)
         
+        System.out.println(CompactBaseStats.getStats(RaceT.NE.compactBaseStats));
+        //System.out.println(CompactBaseStats.getStats(RaceT.ORC.compactBaseStats));
+        //System.out.println(CompactBaseStats.getStats(ClassT.WAR.getCompactBaseStats(100)));
+  
+        StatMap map = new StatMap();
+        CompactBaseStats.collectStats(map, RaceT.NE.compactBaseStats);
+        CompactBaseStats.collectStats(map, ClassT.DRUID.getCompactBaseStats(100));
+        System.out.println(map);
+        
+        
         System.out.println(ClassT.DRUID.specs);
         System.out.println(ClassT.DRUID.races);
         System.out.println(RaceT.NE.getClasses());

@@ -72,6 +72,14 @@ abstract public class TypeT {
                 }
             }
             return list;
+        }            
+        public int[] index(T... a) {
+            int[] v = new int[types.length];
+            Arrays.fill(v, -1);
+            for (int i = 0; i < a.length; i++) {
+                v[a[i].index] = i;
+            }
+            return v;
         }
         public int size() {
             return types.length;
@@ -210,7 +218,6 @@ abstract public class TypeT {
         }
         return types;
     }
-    
     
     static public <T extends TypeT> Assoc<T> assoc(Class<T> cls) { return assoc(cls, x -> x.id, "Id"); }    
     static public <T extends TypeT> Assoc<T> assoc(Class<T> cls, ToIntFunction<T> key, String suffix) {        

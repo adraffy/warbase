@@ -33,7 +33,7 @@ public class PlayerScaling {
     static public float get(int playerLevel, int scalingId) {
         if (playerLevel < 1) {
             throw new IllegalArgumentException("PlayerLevel Too Low: " + playerLevel);
-        } else if (playerLevel >= M.length) {
+        } else if (playerLevel > M.length) {
             throw new IllegalArgumentException("PlayerLevel Too High: " + playerLevel);
         } 
         if (scalingId < 0 || scalingId > 5) {

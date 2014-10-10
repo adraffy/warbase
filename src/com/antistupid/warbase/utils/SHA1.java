@@ -6,7 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import javax.xml.bind.DatatypeConverter;
 
 public class SHA1 {
-
     
     static public byte[] digest(byte[] dat) {
         try {            
