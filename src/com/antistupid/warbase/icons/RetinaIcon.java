@@ -20,13 +20,23 @@ public class RetinaIcon extends ImageIcon {
             observer = c;
         }
         Image image = getImage();
-        //int width = image.getWidth(observer);
-        //int height = image.getHeight(observer);
-        //Graphics2D g = (Graphics2D)g_.create(0, 0, width, height);g
-        Graphics2D g = (Graphics2D)gg;
+        int width = image.getWidth(observer);
+        int height = image.getHeight(observer);
+        Graphics2D g = (Graphics2D)gg.create(x, y, width, height);
+        //Graphics2D g = (Graphics2D)gg;
         g.scale(0.5, 0.5);
         g.drawImage(image, 0, 0, observer);
         g.dispose();
+    }
+    
+    @Override
+    public int getIconWidth() {
+        return super.getIconWidth() / 2;
+    }
+    
+    @Override
+    public int getIconHeight() {
+        return super.getIconHeight() / 2;
     }
 
 }

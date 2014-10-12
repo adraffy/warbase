@@ -33,17 +33,16 @@ abstract public class TypeT {
     public String toString() {
         return name;
     }
-    
-       
+           
     static public boolean checkBit(long mask, TypeT type) { // null safe
-        return type != null && type.memberOf(mask); 
+        return type != null && type.isMemberOf(mask); 
     }
         
-    public boolean memberOf_passZero(long mask) {
-        return mask == 0 || memberOf(mask);
+    public boolean isMemberOf_passZero(long mask) {
+        return mask == 0 || isMemberOf(mask);
     }
     
-    public boolean memberOf(long mask) {
+    public boolean isMemberOf(long mask) {
         return (getBit() & mask) != 0L;
     }
     
@@ -53,18 +52,20 @@ abstract public class TypeT {
     
     //
     
-    
-    ///
-    
-    
     static public class Container<T extends TypeT> {
-        public final T[] types;        
+        public final Class<T> cls; // was there a reason why i wasn't retaining this?
+        public final T[] types;         
         public final Assoc<T> by_id;
-        Container(Class<T> cls) {            
+        Container(Class<T> cls) {      
+            this.cls = cls;
             types = indexed(cls);
             by_id = assoc(cls);
-        }        
-        public ArrayList<T> select(Predicate<T> test) {
+        }     
+        public T[] selectArray(Predicate<T> test) {
+            ArrayList<T> list = selectList(test);
+            return list.toArray((T[])Array.newInstance(cls, list.size()));
+        }
+        public ArrayList<T> selectList(Predicate<T> test) {
             ArrayList<T> list = new ArrayList<>(types.length);
             for (T x: types) {
                 if (test.test(x)) {
@@ -73,7 +74,12 @@ abstract public class TypeT {
             }
             return list;
         }            
-        public int[] index(T... a) {
+        public void forEach(Consumer<T> cb) {
+            for (T x: types) {
+                cb.accept(x);
+            }
+        }
+        public int[] createFastLookup(T... a) {
             int[] v = new int[types.length];
             Arrays.fill(v, -1);
             for (int i = 0; i < a.length; i++) {
@@ -179,7 +185,7 @@ abstract public class TypeT {
         public int encode(long mask) {
             int blizzMask = 0;
             for (T x: assoc.types) {
-                if (x.memberOf(mask)) {
+                if (x.isMemberOf(mask)) {
                     blizzMask |= f.applyAsInt(x);
                 }                
             }            

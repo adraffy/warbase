@@ -6,7 +6,7 @@ import java.util.function.ToIntFunction;
 public class CompactBaseStats {
     
     static public final StatT[] STATS = {StatT.STA, StatT.STR, StatT.AGI, StatT.INT, StatT.SPI};
-    static private final int[] quickIndex = StatT.db.index(STATS);
+    static private final int[] quickIndex = StatT.db.createFastLookup(STATS);
 
     static private final int BITS = 12; // 5 * 12 <= 64
     static public final int RANGE = (1 << BITS) - 1;

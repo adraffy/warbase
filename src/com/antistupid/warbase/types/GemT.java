@@ -12,7 +12,7 @@ public class GemT extends TypeT {
     }
     
     public ArrayList<SocketT> sockets(boolean bonus) {
-        return SocketT.db.select(x -> x.matches(this, bonus));
+        return SocketT.db.selectList(x -> x.matches(this, bonus));
     }
     
     public boolean socketable() {

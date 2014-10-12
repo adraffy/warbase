@@ -2,6 +2,7 @@ package com.antistupid.warbase.types;
 
 import com.antistupid.warbase.stats.CompactBaseStats;
 import com.antistupid.warbase.stats.StatMap;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
@@ -10,6 +11,8 @@ public class ClassT extends TypeT {
 
     public final String shortName;
     public final String iconName;
+    public final Color fillColor;
+    public final Color textColor;
     
     final long allowedRaces;
     final long allowedWeapons;
@@ -20,10 +23,12 @@ public class ClassT extends TypeT {
     public final ArrayList<RaceT> races = new ArrayList<>(RaceT.db.size());
     
     static private int _index;
-    private ClassT(int id, String name, String shortName, String iconName, long allowedRaces, long allowedWeapons, long allowedArmors, long[] baseStats) {
+    private ClassT(int id, String name, String shortName, String iconName, Color fillColor, Color textColor, long allowedRaces, long allowedWeapons, long allowedArmors, long[] baseStats) {
         super(_index++, id, name);
         this.shortName = shortName != null ? shortName : name;
         this.iconName = iconName;
+        this.fillColor = fillColor;
+        this.textColor = textColor != null ? textColor : fillColor;
         this.allowedRaces = allowedRaces;
         this.allowedWeapons = allowedWeapons | WeaponT.TRIVIAL;
         this.allowedArmors = allowedArmors | ArmorT.TRIVIAL;
@@ -65,8 +70,8 @@ public class ClassT extends TypeT {
     }
     
     static class MailAt40 extends ClassT {
-        public MailAt40(int id, String name, String shortName, String iconName, long allowedRaces, long allowedWeapons, long allowedArmors, long[] baseStats) {
-            super(id, name, shortName, iconName, allowedRaces, allowedWeapons, allowedArmors, baseStats);
+        public MailAt40(int id, String name, String shortName, String iconName, Color fillColor, Color textColor, long allowedRaces, long allowedWeapons, long allowedArmors, long[] baseStats) {
+            super(id, name, shortName, iconName, fillColor, textColor, allowedRaces, allowedWeapons, allowedArmors, baseStats);
         }
         @Override
         public boolean canWear(int playerLevel, ArmorT armor) {
@@ -75,7 +80,9 @@ public class ClassT extends TypeT {
     }    
 
     static public final ClassT WAR = new ClassT(
-            1, "Warrior", "War", "warrior",
+            1, "Warrior", "War", "class_warrior", 
+            new Color(0xC6, 0x9B, 0x6D),
+            null,
             RaceT.db.encode(
                     RaceT.BE, 
                     RaceT.DRAENEI, 
@@ -118,7 +125,9 @@ public class ClassT extends TypeT {
             new long[]{0x800800a01100bL,0x900900c01300cL,0xa00a00c01400cL,0xa00a00d01500dL,0xa00a00d01500dL,0xa00a00d01500dL,0xa00b00e01700eL,0xb00c00f01800fL,0xc00c01001a010L,0xc00d01101b011L,0xe00e01201e012L,0xf010014021014L,0x10011015023016L,0x11012018026018L,0x13014019029019L,0x1401501b02c01bL,0x1601701c02f01dL,0x1701901f03301fL,0x1901a021036021L,0x1a01b023038023L,0x1c01d02403b024L,0x1e01f02703f027L,0x1e020028042029L,0x2102202b04602bL,0x2202302d04902dL,0x2402502e04c02fL,0x2402603004f030L,0x26028033053033L,0x2802a035056035L,0x2902b036058036L,0x2b02c03805b038L,0x2b02e03905e03aL,0x2d02f03c06103bL,0x3003203e06603fL,0x31033040069040L,0x3203504206c042L,0x3303604406f044L,0x35037045072046L,0x36039047074047L,0x3803b04907904aL,0x3903c04b07b04cL,0x3b03d04d07e04dL,0x3c03f04f08104fL,0x3e040050084051L,0x3f042053088053L,0x4104405608c056L,0x4304605708f058L,0x44047059092059L,0x4504805b09405bL,0x4604a05d09705dL,0x4804b05e09a05eL,0x4a04d06109e061L,0x4b04e0620a1063L,0x4c0500640a4064L,0x4d0510660a7066L,0x500530690ab069L,0x5105506a0ae06aL,0x5205606c0b006cL,0x5305706d0b306eL,0x550590700b7070L,0x5b0600780c4078L,0x6106607f0d0080L,0x6706c0870dd087L,0x6806d0890e0089L,0x6a06f08b0e408cL,0x6c07108d0e708dL,0x6d07208f0ea08fL,0x6e0730910ec091L,0x6f0750920ef092L,0x7507b09a0fc09aL,0x7907e09e10309eL,0x7f0840a610f0a6L,0x8408b0ae11c0aeL,0x8608c0af11f0afL,0x8708d0b11210b1L,0x8808f0b31240b3L,0x8a0910b51280b5L,0x8c0920b712b0b7L,0x8e0940ba12f0baL,0x900970bd1350bdL,0x9609d0c51420c5L,0x9b0a30cc14e0ccL,0x9f0a70d01550d1L,0xa10a80d31580d2L,0xa10a90d415b0d4L,0xa80af0dc1670dcL,0xae0b60e31740e3L,0xb30bc0eb1800ebL,0xb90c20f218d0f3L,0xbf0c80fa1990faL,0x105112157230157L,0x135144195296195L,0x16917b1da3071daL,0x1a81bc22b38c22bL,0x1f120928c42a28cL,0x2492652ff4e62ffL,0x26127e31d51831dL,0x27829633c54b33cL,0x28f2af35b57d35bL,0x2a72c73795af37aL}
     );
     static public final ClassT PALADIN = new ClassT(
-            2, "Paladin", "Pally", "paladin",
+            2, "Paladin", "Pally", "class_paladin",
+            new Color(0xF4, 0x8C, 0xBA),
+            null,
             RaceT.db.encode(
                     RaceT.BE, 
                     RaceT.DRAENEI, 
@@ -145,7 +154,9 @@ public class ClassT extends TypeT {
             null
     );
     static public final ClassT HUNTER = new MailAt40(
-            3, "Hunter", "Hunt", "hunter",
+            3, "Hunter", "Hunt", "class_hunter",
+            new Color(0xAA, 0xD3, 0x72),
+            null,
             RaceT.db.encode(
                     RaceT.BE, 
                     RaceT.DRAENEI,
@@ -182,7 +193,9 @@ public class ClassT extends TypeT {
             null
     );
     static public final ClassT ROGUE = new ClassT(
-            4, "Rogue", null, "rogue",        
+            4, "Rogue", null, "class_rogue",    
+            new Color(0xFF, 0xF4, 0x68),
+            null,
             RaceT.db.encode(
                     RaceT.BE, 
                     RaceT.DWARF, 
@@ -214,7 +227,9 @@ public class ClassT extends TypeT {
             null
     );
     static public final ClassT PRIEST = new ClassT(
-            5, "Priest", null, "priest", 
+            5, "Priest", null, "class_priest", 
+            Color.WHITE,
+            Color.BLACK,
             RaceT.db.encode(
                     RaceT.BE, 
                     RaceT.DRAENEI, 
@@ -243,7 +258,9 @@ public class ClassT extends TypeT {
             null   
     );
     static public final ClassT DK  = new ClassT(
-            6, "Death Knight", "DK", "deathknight",
+            6, "Death Knight", "DK", "class_deathknight",
+            new Color(0xC4, 0x1E, 0x3B),
+            null,
             RaceT.db.encode(
                     RaceT.BE,
                     RaceT.DRAENEI,
@@ -276,7 +293,9 @@ public class ClassT extends TypeT {
             null
     );
     static public final ClassT SHAMAN = new MailAt40(
-            7, "Shaman", "Sham", "shaman",
+            7, "Shaman", "Sham", "class_shaman",
+            new Color(0x23, 0x59, 0xFF),
+            null,
             RaceT.db.encode(
                     RaceT.DRAENEI,
                     RaceT.DWARF,
@@ -303,7 +322,9 @@ public class ClassT extends TypeT {
             null
     );           
     static public final ClassT MAGE = new ClassT(
-            8, "Mage", null, "mage",
+            8, "Mage", null, "class_mage",
+            new Color(0x68, 0xCC, 0xEF),
+            null,
             RaceT.db.encode(
                     RaceT.BE,
                     RaceT.DRAENEI,
@@ -332,7 +353,9 @@ public class ClassT extends TypeT {
             null
     );
     static public final ClassT LOCK = new ClassT(
-            9, "Warlock", "Lock", "warlock",
+            9, "Warlock", "Lock", "class_warlock",
+            new Color(0x93, 0x82, 0xC9),
+            null,
             RaceT.db.encode(
                     RaceT.BE,
                     RaceT.DWARF,
@@ -356,7 +379,9 @@ public class ClassT extends TypeT {
             null
     );
     static public final ClassT MONK = new ClassT(
-            10, "Monk", null, "monk",
+            10, "Monk", null, "class_monk",
+            new Color(0x00, 0x84, 0x67),
+            null,
             RaceT.db.encode(
                     RaceT.BE, 
                     RaceT.DRAENEI, 
@@ -387,7 +412,9 @@ public class ClassT extends TypeT {
             null
     );    
     static public final ClassT DRUID = new ClassT(
-            11, "Druid", null, "druid",
+            11, "Druid", null, "class_druid", 
+            new Color(0xFF, 0x7C, 0x0A),
+            null,
             RaceT.db.encode(
                     RaceT.WORGEN,
                     RaceT.NE,

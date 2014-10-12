@@ -62,21 +62,16 @@ public class StatMap {
     public int get(StatT stat) {
         return total[stat.index];
     }
+        
     
-    public String getDesc(boolean tiny) {
-        StringBuilder sb = new StringBuilder();
-        appendTo(sb, tiny);
-        return sb.toString();
-    }
     
-    public void appendTo(StringBuilder sb, boolean tiny) {
-        boolean first = true;
+    // return number of stats added
+    public int appendTo(StringBuilder sb, boolean tiny, boolean noneIfEmpty) {
+        int num = 0;
         for (int i = 0; i < total.length; i++) {
             int t = total[i];
             if (t != 0) { 
-                if (first) {
-                    first = false;
-                } else {
+                if (num++ > 0) {
                     sb.append(", ");
                 }
                 StatT stat = STATS[i];
@@ -85,17 +80,23 @@ public class StatMap {
                 sb.append(tiny ? stat.tinyName : stat.shortName);
             }
         }    
-        if (first == true) {
+        if (num == 0 && noneIfEmpty) {
             sb.append("None");
         }
+        return num;
     }
     
+    public String toString_noBracket(boolean tiny) {
+        StringBuilder sb = new StringBuilder();
+        appendTo(sb, tiny, true);
+        return sb.toString();
+    }
     
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        appendTo(sb, true);
+        appendTo(sb, true, false);
         sb.append("]");
         return sb.toString();
     }

@@ -24,7 +24,7 @@ public class SocketT extends TypeT {
     }
     
     public ArrayList<GemT> gems(boolean bonus) {
-        return GemT.db.select(x -> matches(x, bonus));
+        return GemT.db.selectList(x -> matches(x, bonus));
     }
         
     static public final SocketT META        = new SocketT(0, GemBits.META,       "Meta");

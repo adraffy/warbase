@@ -13,7 +13,7 @@ public class SlotT extends TypeT {
     }
     
     public boolean canContain(EquipT type) {
-        return type != null && type.memberOf(allowedEquip);
+        return type != null && type.isMemberOf(allowedEquip);
     }
     
     //
@@ -51,7 +51,7 @@ public class SlotT extends TypeT {
     /*
     static public SlotT firstMatch(EquipT equip) {
         for (SlotT x: db.types) {
-            if (equip.memberOf(x.allowedEquip)) {
+            if (equip.isMemberOf(x.allowedEquip)) {
                 return x;
             }            
         }

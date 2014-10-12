@@ -111,8 +111,12 @@ public class IconCache {
         });
     }
         
-    public void get(String key, Callback cb) {        
+    public void get(String key, Callback cb) { // do we need to support null cb?  
         synchronized (guard) {
+            if (key == null) {
+                cb.got(key, null, blank);
+                return;
+            }
             ImageIcon store = map.get(key);
             if (store != null && store != requested) {
                 cb.got(key, null, store);    
@@ -122,14 +126,12 @@ public class IconCache {
                 map.put(key, requested);                
                 hc.fetchData(key, urlFmt.replace("$", key), 0, true, this::gotData);                
             }          
-            if (cb != null) {
-                HashSet<Callback> set = cbMap.get(key);
-                if (set == null) {
-                    set = new HashSet<>();
-                    cbMap.put(key, set);
-                }
-                set.add(cb);                
+            HashSet<Callback> set = cbMap.get(key);
+            if (set == null) {
+                set = new HashSet<>();
+                cbMap.put(key, set);
             }
+            set.add(cb);                
             cb.got(key, null, blank);
         }
     } 
@@ -157,6 +159,7 @@ public class IconCache {
             set = cbMap.remove(key);
         }
         if (set != null) {
+            //System.out.println(key0 + ":"  + set.size());
             for (Callback x: set) {
                 x.got(key, error, result);
             }
