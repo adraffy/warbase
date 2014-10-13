@@ -1,6 +1,5 @@
 package com.antistupid.warbase.structs;
 
-import java.util.function.ToIntFunction;
 import com.antistupid.warbase.types.SocketT;
 
 public class RandomSuffix {

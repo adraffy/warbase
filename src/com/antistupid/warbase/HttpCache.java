@@ -54,7 +54,7 @@ public class HttpCache {
     public HttpCache(Path rootDir) {     
         this.rootDir = rootDir;
         worker.setDaemon(true);
-        worker.start();
+        //worker.start();
     }
     
     // ignore cache, download fresh
@@ -83,6 +83,9 @@ public class HttpCache {
     
     public void fetchData(Object key, String url, int maxAge, boolean cache, Callback cb) {
         synchronized (guard) {
+            if (worker.getState() == Thread.State.NEW) {
+                worker.start(); // LOD
+            }
             queue.add(new R(key, url, maxAge, cache, cb));
             guard.notify();
         }        

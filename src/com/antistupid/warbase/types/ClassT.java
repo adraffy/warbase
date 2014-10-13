@@ -294,7 +294,7 @@ public class ClassT extends TypeT {
     );
     static public final ClassT SHAMAN = new MailAt40(
             7, "Shaman", "Sham", "class_shaman",
-            new Color(0x23, 0x59, 0xFF),
+            new Color(0x47, 0x74, 0xFF), //0x23, 0x59, 0xFF),//{"0x6c", "0x90", "0xff"}
             null,
             RaceT.db.encode(
                     RaceT.DRAENEI,

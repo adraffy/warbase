@@ -21,23 +21,32 @@ public class LineError {
         return String.format("[%d] %s :: \"%s\"", lineno, error, line);
     }
     
-    static public String toHtml(Collection<LineError> errors) {
+    static public String toHtmlFragment(Collection<LineError> errors) {
         StringBuilder sb = new StringBuilder();
-        sb.append("<html>");
-        sb.append("Please fix the following errors:");  
+        sb.append("<p><b>Please fix the following errors:</b></p>");  
+        int num = 0;
         for (LineError x: errors) {
-            sb.append("<br/>");
             if (x.lineno >= 0) {
-                sb.append("<b>Line ");
+                sb.append("<p style='background-color: #ffffcc;margin-top:4px'>");
+                sb.append("<tt style='font-size:8px; color: #008b8b'>");                
+                sb.append("<b>[Line ");
                 sb.append(x.lineno);
-                sb.append("</b><br/>");
-                sb.append("<tt>");
+                sb.append("] </b> ");
                 sb.append(x.line);
-                sb.append("</tt><br/>");
+                sb.append("</tt></p>");
             }
+            sb.append("<p style='font-size:9px'>");
             sb.append(x.error);
+            sb.append("</p>");
+            if (++num == 10) {
+                break;
+            }
         }
-        sb.append("</html>");
+        if (num < errors.size()) {
+            sb.append("<p style='margin-top:4px'>... and ");
+            StringBuilderHelp.plural(sb, num, " ", "more error", "s", true);
+            sb.append(" (not shown)</p>");
+        }        
         return sb.toString();
     }
     

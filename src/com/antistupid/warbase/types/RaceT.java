@@ -43,7 +43,7 @@ public class RaceT extends TypeT {
 
     // ---
     
-    static public final RaceT ORC          = new RaceT(2,  "Orc",          "race_orc_male", "race_pandaren_female", FactionRoot.HORDE, 0x2ffcffc003001L);
+    static public final RaceT ORC          = new RaceT(2,  "Orc",          "race_orc_male", "race_orc_female", FactionRoot.HORDE, 0x2ffcffc003001L);
     static public final RaceT UNDEAD       = new RaceT(5,  "Undead",       "race_scourge_male", "race_scourge_female", FactionRoot.HORDE, 0x5ffdffdffe000L);
     static public final RaceT TAUREN       = new RaceT(6,  "Tauren",       "race_tauren_male", "race_tauren_female", FactionRoot.HORDE, 0x2ffbffb005001L);
     static public final RaceT TROLL        = new RaceT(8,  "Troll",        "race_troll_male", "race_troll_female", FactionRoot.HORDE, 0x1ffb002001000L);
@@ -67,6 +67,21 @@ public class RaceT extends TypeT {
     
     static public final long ALLIANCE = db.encode(HUMAN, DWARF, GNOME, NE, DRAENEI, WORGEN, PANDAREN_A);
     static public final long HORDE = db.encode(ORC, UNDEAD, TAUREN, TROLL, GOBLIN, BE, PANDAREN_H);
+    
+    static public RaceT resolvePandaFaction(long bits) {        
+        boolean a = PANDAREN_A.isMemberOf(bits);
+        boolean h = PANDAREN_H.isMemberOf(bits);
+        boolean n = PANDAREN_N.isMemberOf(bits);
+        if (a && !h && !n) {
+            return PANDAREN_A;
+        } else if (!a && h && !n) {
+            return PANDAREN_H;
+        } else if (!a && !h && n) {
+            return PANDAREN_N; // dont think this happens
+        } else {
+            return null;
+        }        
+    }
     
     
 }
