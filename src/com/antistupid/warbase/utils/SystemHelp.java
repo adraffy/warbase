@@ -3,15 +3,11 @@ package com.antistupid.warbase.utils;
 import java.awt.Desktop;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URI;
 import java.nio.file.Path;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
 
 public class SystemHelp {
     
@@ -23,7 +19,7 @@ public class SystemHelp {
         WIN = sys.contains("Windows");
     }
            
-    static public final int ACCELERATOR_MASK = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    //static public final int ACCELERATOR_MASK = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
     
     static public boolean isRetina() {
         GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();

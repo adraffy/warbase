@@ -1,4 +1,4 @@
-package com.antistupid.warbase.icons;
+package com.antistupid.warbase.art;
 
 import java.awt.Component;
 import java.awt.Graphics;

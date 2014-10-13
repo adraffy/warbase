@@ -1,16 +1,11 @@
-package com.antistupid.warbase.icons;
+package com.antistupid.warbase.art;
 
-import com.antistupid.warbase.HttpCache;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.FontMetrics;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.HashSet;
@@ -22,8 +17,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import com.antistupid.warbase.HttpCache;
 import com.antistupid.warbase.utils.SystemHelp;
-import com.antistupid.warbase.utils.SystemHelp;
-import com.antistupid.warbase.icons.RetinaIcon;
 
 public class IconCache {
 

@@ -1,9 +1,7 @@
 package com.antistupid.warbase.utils;
 
-import com.antistupid.warbase.utils.SystemHelp;
 import java.awt.Image;
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import javax.swing.JMenuBar;
 import javax.swing.JTextField;
@@ -19,8 +17,6 @@ public class MacHelp {
         System.setProperty("apple.laf.useScreenMenuBar", "true");
         //System.setProperty("com.apple.mrj.application.apple.menu.about.name", "PPOOP");
     }
-    
-    
     
     static Object app() throws Exception {
         return Class.forName("com.apple.eawt.Application").getMethod("getApplication", (Class[]) null).invoke(null, (Object[]) null);
