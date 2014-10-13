@@ -117,7 +117,7 @@ public class StatId {
         switch (id) {            
             //case PVP_POWER: 
             //case PVP_RESILIENCE:
-            case BLOCK:
+            //case BLOCK:
             case MANA_PER_5:
             /*case RESIST_FIRE:
             case RESIST_FROST:

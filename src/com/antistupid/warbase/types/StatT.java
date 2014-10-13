@@ -57,6 +57,7 @@ abstract public class StatT extends TypeT {
     static public final Fundamental INT     = new Fundamental(StatId.INTELLECT,             "Intellect", null, "Int");
     static public final Fundamental SPI     = new Fundamental(StatId.SPIRIT,                "Spirit", null, "Spi");
     
+    static public final Fundamental BLOCK   = new Fundamental(StatId.BLOCK, "Block", null, null);
     static public final Fundamental DODGE   = new Fundamental(StatId.DODGE, "Dodge", null, null);
     static public final Fundamental PARRY   = new Fundamental(StatId.PARRY, "Parry", null, null);
     

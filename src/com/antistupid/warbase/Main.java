@@ -1,5 +1,8 @@
 package com.antistupid.warbase;
 
+import com.antistupid.warbase.data.HealthCurve;
+import com.antistupid.warbase.data.ManaCurve;
+import com.antistupid.warbase.data.RatingCurve;
 import com.antistupid.warbase.stats.StatMap;
 import com.antistupid.warbase.stats.CompactBaseStats;
 import com.antistupid.warbase.types.GemT;
@@ -7,12 +10,20 @@ import com.antistupid.warbase.types.RaceT;
 import com.antistupid.warbase.types.SocketT;
 import com.antistupid.warbase.types.StatT;
 import com.antistupid.warbase.types.ClassT;
+import com.antistupid.warbase.types.RatingT;
+import com.antistupid.warbase.types.SpecT;
 
 public class Main {
 
     public static void main(String[] args) {
  
         //System.out.println(EquipT.CHEST.)
+        
+        for (RatingT x: RatingT.db.types) {
+            System.out.println(x + ": " + x.getCoeff(100));
+        }
+        
+        System.out.println(ManaCurve.get(1, SpecT.FERAL));
         
         System.out.println(CompactBaseStats.getStats(RaceT.NE.compactBaseStats));
         //System.out.println(CompactBaseStats.getStats(RaceT.ORC.compactBaseStats));
