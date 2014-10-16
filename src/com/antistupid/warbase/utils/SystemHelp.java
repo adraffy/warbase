@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.net.URI;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class SystemHelp {
     
@@ -18,9 +19,19 @@ public class SystemHelp {
         MAC = sys.contains("Mac") || sys.contains("OS X");
         WIN = sys.contains("Windows");
     }
-           
-    //static public final int ACCELERATOR_MASK = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
     
+    static public final Path HOME_DIR = Paths.get(System.getProperty("user.home"));
+    static public final Path DATA_DIR;
+    static {
+        if (MAC) {
+            DATA_DIR = HOME_DIR.resolve("Library").resolve("Application Support");
+        } else if (WIN) {
+            DATA_DIR = HOME_DIR.resolve("Local Settings").resolve("ApplicationData");
+        } else {
+            DATA_DIR = HOME_DIR;
+        }        
+    }
+         
     static public boolean isRetina() {
         GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         try {

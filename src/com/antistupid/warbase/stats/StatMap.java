@@ -37,6 +37,15 @@ public class StatMap {
         return other != null && Arrays.equals(total, other.total);
     }
     
+    public boolean hasAny() {
+        for (int i = 0; i < total.length; i++) {
+            if (total[i] != 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public int nonZeroCount() {
         int n = 0;
         for (int i = 0; i < total.length; i++) {

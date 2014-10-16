@@ -4,23 +4,19 @@ import com.antistupid.warbase.types.QualityT;
 
 public class ItemStatCurve {
        
-    static public int get(int itemLevel, QualityT quality, int randPropIndex) {
+    static public double get(int itemLevel, QualityT quality, int randPropIndex) {
         if (itemLevel < 1 || itemLevel > M.length) {
             throw new IllegalArgumentException("Illegal ItemLevel: " + itemLevel);
         }
         if (randPropIndex < 0 || randPropIndex >= N) {
             throw new IllegalArgumentException("Illegal RandPropIndex: " + randPropIndex);
         }
-        int array = quality.randPropArrayIndex;
-        if (array < 0) {
+        int arrayIndex = quality.randPropArrayIndex;
+        if (arrayIndex < 0) {
             return 0;
         }
-        int[] v = M[itemLevel - 1];
-        if (v.length > N) {
-            return v[randPropIndex + array * N];
-        } else {
-            return v[randPropIndex];
-        }        
+        int[] v = M[itemLevel - 1];        
+        return v[v.length > N ? randPropIndex + arrayIndex * N : randPropIndex] / 10000D;
     }
     
     static private final int N = 5;

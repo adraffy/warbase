@@ -2,6 +2,7 @@ package com.antistupid.warbase;
 
 import com.antistupid.warbase.data.HealthCurve;
 import com.antistupid.warbase.data.ManaCurve;
+import com.antistupid.warbase.data.PlayerScaling;
 import com.antistupid.warbase.data.RatingCurve;
 import com.antistupid.warbase.stats.StatMap;
 import com.antistupid.warbase.stats.CompactBaseStats;
@@ -23,6 +24,8 @@ public class Main {
             System.out.println(x + ": " + x.getCoeff(100));
         }
         
+        System.out.println(PlayerScaling.get(100, 1));
+        
         System.out.println(ManaCurve.get(1, SpecT.FERAL));
         
         System.out.println(CompactBaseStats.getStats(RaceT.NE.compactBaseStats));
@@ -30,8 +33,8 @@ public class Main {
         //System.out.println(CompactBaseStats.getStats(ClassT.WAR.getCompactBaseStats(100)));
   
         StatMap map = new StatMap();
-        CompactBaseStats.collectStats(map, RaceT.NE.compactBaseStats);
-        CompactBaseStats.collectStats(map, ClassT.DRUID.getCompactBaseStats(100));
+        CompactBaseStats.collectStats(map, RaceT.DRAENEI.compactBaseStats);
+        CompactBaseStats.collectStats(map, ClassT.MONK.getCompactBaseStats(100));
         System.out.println(map);
         
         

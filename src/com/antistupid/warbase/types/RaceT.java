@@ -1,5 +1,6 @@
 package com.antistupid.warbase.types;
 
+import com.antistupid.warbase.data.PlayerScaling;
 import java.util.ArrayList;
 import java.util.function.Consumer;
 
@@ -65,10 +66,17 @@ public class RaceT extends TypeT {
     static public final BlizzBit<RaceT> blizzBits = new BlizzBit<>(RaceT.class, x -> 1 << (x.id - 1));
     static public final TypeNames<RaceT> names = new TypeNames<>(db.types);
     
-    static public final long ALLIANCE = db.encode(HUMAN, DWARF, GNOME, NE, DRAENEI, WORGEN, PANDAREN_A);
-    static public final long HORDE = db.encode(ORC, UNDEAD, TAUREN, TROLL, GOBLIN, BE, PANDAREN_H);
+    static public final long MASK_ALLIANCE = db.encode(HUMAN, DWARF, GNOME, NE, DRAENEI, WORGEN, PANDAREN_A);
+    static public final long MASK_HORDE = db.encode(ORC, UNDEAD, TAUREN, TROLL, GOBLIN, BE, PANDAREN_H);
+  
+    static public final long MASK_PANDAREN = db.encode(PANDAREN_A, PANDAREN_H, PANDAREN_N);
     
-    static public RaceT resolvePandaFaction(long bits) {        
+    static public boolean isPandaren(RaceT race) {
+        return checkBit(MASK_PANDAREN, race);
+        //return race == PANDAREN_A || race == PANDAREN_H || race == PANDAREN_N;
+    }
+    
+    static public RaceT resolvePandarenFaction(long bits) {        
         boolean a = PANDAREN_A.isMemberOf(bits);
         boolean h = PANDAREN_H.isMemberOf(bits);
         boolean n = PANDAREN_N.isMemberOf(bits);
@@ -83,5 +91,22 @@ public class RaceT extends TypeT {
         }        
     }
     
+    // agi/int/str
+    //static public final int DRAENEI_HEROIC_PRESENCE_SCALING_ID = 1; // 6562
+    //static public final double DRAENEI_HEROIC_PRESENCE_SCALING_COEFF = 0.25;    
+    static public int getDraenei_heroicPresence_agiIntStr(int playerLevel) {
+        return (int)(PlayerScaling.get(playerLevel, -1) * 0.25);
+    }
+        
+    // versa
+    //static public final int HUMAN_THE_HUMAN_SPIRIT_SCALING_ID = 1; //20598
+    //static public final double HUMAN_THE_HUMAN_SPIRIT_SCALING_COEFF = 0.385;
+    static public int getHuman_theHumanSpirit_versa(int playerLevel) {
+        return (int)(PlayerScaling.get(playerLevel, -1) * 0.385);
+    }
+    
+    static public int getTauren_endurance_sta(int playerLevel) { // 20550
+        return (int)(PlayerScaling.get(playerLevel, -1) * 0.755); 
+    }
     
 }
