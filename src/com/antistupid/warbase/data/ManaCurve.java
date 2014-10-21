@@ -26,7 +26,9 @@ public class ManaCurve {
     
     static public int get(int playerLevel, SpecT spec) {
         checkLevel(playerLevel);
-        if (spec.primaryStat == StatT.INT) {
+        if (spec == null) {
+            return 0;
+        } else if (spec.primaryStat == StatT.INT) {
             return PRIMARY[Math.min(PRIMARY.length, playerLevel) - 1];
         } else if (spec.manaHybrid) {
             return HYBRID[Math.min(HYBRID.length, playerLevel) - 1];

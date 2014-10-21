@@ -16,24 +16,26 @@ public class SlotT extends TypeT {
         return type != null && type.isMemberOf(allowedEquip);
     }
     
+    
     //
     
     static public final int BODYPART_ARMOR      = 0x01;
     static public final int BODYPART_HAND       = 0x02;
     static public final int BODYPART_JEWELRY    = 0x04;
     static public final int BODYPART_CLOTH      = 0x08;
+    static public final int BODYPART_COSMETIC   = 0x10;
         
     // filters
-    static final int BODYPARTS_EXCEPT_HAND  = BODYPART_ARMOR | BODYPART_CLOTH | BODYPART_JEWELRY;
-    static final int BODYPARTS_ALL      = -1;
+    static final int BODYPARTS_EXCEPT_HAND = BODYPART_ARMOR | BODYPART_CLOTH | BODYPART_JEWELRY;
+    static final int BODYPARTS_ALL = -1;
     
     static public final SlotT HEAD      = new SlotT(1,  "Head",         BODYPART_ARMOR,     EquipT.db.encode(EquipT.HEAD));  
     static public final SlotT NECK      = new SlotT(2,  "Neck",         BODYPART_JEWELRY,   EquipT.db.encode(EquipT.NECK));    
     static public final SlotT SHOULDER  = new SlotT(3,  "Shoulder",     BODYPART_ARMOR,     EquipT.db.encode(EquipT.SHOULDER));
     static public final SlotT BACK      = new SlotT(15, "Back",         BODYPART_CLOTH,     EquipT.db.encode(EquipT.CLOAK));
-    static public final SlotT SHIRT     = new SlotT(4,  "Shirt",        BODYPART_CLOTH,     EquipT.db.encode(EquipT.SHIRT));
+    static public final SlotT SHIRT     = new SlotT(4,  "Shirt",        BODYPART_COSMETIC,  EquipT.db.encode(EquipT.SHIRT));
     static public final SlotT CHEST     = new SlotT(5,  "Chest",        BODYPART_ARMOR,     EquipT.db.encode(EquipT.CHEST, EquipT.ROBE));
-    static public final SlotT TABARD    = new SlotT(19, "Tabard",       BODYPART_CLOTH,     EquipT.db.encode(EquipT.TABARD));
+    static public final SlotT TABARD    = new SlotT(19, "Tabard",       BODYPART_COSMETIC,  EquipT.db.encode(EquipT.TABARD));
     static public final SlotT WRIST     = new SlotT(9,  "Wrist",        BODYPART_ARMOR,     EquipT.db.encode(EquipT.WRIST));
     static public final SlotT WAIST     = new SlotT(6,  "Waist",        BODYPART_ARMOR,     EquipT.db.encode(EquipT.WAIST));
     static public final SlotT HANDS     = new SlotT(10, "Hands",        BODYPART_ARMOR,     EquipT.db.encode(EquipT.HANDS));

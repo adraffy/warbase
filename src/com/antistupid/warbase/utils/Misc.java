@@ -4,7 +4,17 @@ import java.util.Comparator;
 
 public class Misc {
     
-    static public <T> Comparator<T[]> makeArrayComparator(Comparator<T> cmp) {        
+    static public int compareForNullAtBottom(Object a, Object b) {
+        if (a == null) {
+            return b == null ? 0 : -1;
+        } else if (b == null) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    
+    static public <T> Comparator<T[]> arrayComparator(Comparator<T> cmp) {        
         return (a, b) -> {
             if (a == null) {
                 return b == null ? 0 : 1;

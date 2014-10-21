@@ -93,7 +93,7 @@ abstract public class StatT extends TypeT {
     static public final Basket STR_AGI_INT = new Basket(StatId.STR_AGI_INT, "Primary", null, null, AGI, STR, INT);
     
     // fake
-    static public final Basket ALL_STATS = new Basket(StatId.ALL_STATS, "All Stats", "Stats", null, AGI, STR, INT, STA, SPI);
+    static public final Basket ALL_STATS = new Basket(StatId.ALL_STATS, "All Stats", "Stats", null, AGI, STR, INT, STA); //, SPI);
     static public final Basket ALL_RESIST = new Basket(StatId.ALL_RESIST, "All Resistances", "All Resist", null, RESIST_FIRE, RESIST_ARCANE, RESIST_FROST, RESIST_SHADOW, RESIST_HOLY, RESIST_NATURE);
     static public final Fundamental DAMAGE = new Fundamental(StatId.DAMAGE, "Melee Damage", "Damage", null);
     

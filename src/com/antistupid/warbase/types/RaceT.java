@@ -95,18 +95,18 @@ public class RaceT extends TypeT {
     //static public final int DRAENEI_HEROIC_PRESENCE_SCALING_ID = 1; // 6562
     //static public final double DRAENEI_HEROIC_PRESENCE_SCALING_COEFF = 0.25;    
     static public int getDraenei_heroicPresence_agiIntStr(int playerLevel) {
-        return (int)(PlayerScaling.get(playerLevel, -1) * 0.25);
+        return (int)(PlayerScaling.get(playerLevel, 1) * 0.25);
     }
         
     // versa
     //static public final int HUMAN_THE_HUMAN_SPIRIT_SCALING_ID = 1; //20598
     //static public final double HUMAN_THE_HUMAN_SPIRIT_SCALING_COEFF = 0.385;
     static public int getHuman_theHumanSpirit_versa(int playerLevel) {
-        return (int)(PlayerScaling.get(playerLevel, -1) * 0.385);
+        return (int)(PlayerScaling.get(playerLevel, 1) * 0.385);
     }
     
     static public int getTauren_endurance_sta(int playerLevel) { // 20550
-        return (int)(PlayerScaling.get(playerLevel, -1) * 0.755); 
+        return (int)(PlayerScaling.get(playerLevel, 1) * 0.755); 
     }
     
 }

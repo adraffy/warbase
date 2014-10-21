@@ -32,6 +32,7 @@ public class IconCache {
             } else {
                 SwingUtilities.invokeLater(() -> c.accept(icon));   
             }            
+            //SwingUtilities.invokeLater(() -> c.accept(icon));   
         };
     }
     
@@ -92,6 +93,12 @@ public class IconCache {
     
     private ImageIcon toImageIcon(BufferedImage image) {
         return scale > 1 ? new RetinaIcon(image) : new ImageIcon(image);
+    }
+    
+    public ImageIcon getBlank() {
+        synchronized (guard) {
+            return blank;
+        }
     }
     
     public void useOfficialBlank() {
