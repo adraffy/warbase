@@ -1,5 +1,6 @@
 package com.antistupid.warbase.data;
 
+import com.antistupid.warbase.types.ClassT;
 import com.antistupid.warbase.types.SpecT;
 import com.antistupid.warbase.types.StatT;
 
@@ -14,17 +15,17 @@ public class ManaCurve {
         } 
     }
     
-    static public int getPrimary(int playerLevel) {
+    static public int getMax_primary(int playerLevel) {
         checkLevel(playerLevel);
         return PRIMARY[Math.min(PRIMARY.length, playerLevel) - 1];
     }
     
-    static public int getHybrid(int playerLevel) {
+    static public int getMax_hybrid(int playerLevel) {
         checkLevel(playerLevel);
         return HYBRID[Math.min(HYBRID.length, playerLevel) - 1];
     }
     
-    static public int get(int playerLevel, SpecT spec) {
+    static public int getMax(int playerLevel, SpecT spec) {
         checkLevel(playerLevel);
         if (spec == null) {
             return 0;
@@ -36,5 +37,50 @@ public class ManaCurve {
             return 0;
         }        
     }
+    
+    
+    static public final double REGEN_PER_MANA_CASTER = 0.008244141;
+    static public final double REGEN_PER_MAMA_HYBRID = 0.0020610352;
+    
+    
+    static public double getManaAttunement(SpecT spec) {        
+        if (spec == SpecT.FERAL || spec == SpecT.GUARDIAN) {
+            return 2; // mana attunement: +100%
+        } else if (spec != null && spec.classType == ClassT.MAGE) {
+            return 4.5; // mana attunement: +350%
+        } else {
+            return 1;
+        }
+    }
+    
+    // 100
+    // 4815 @ 784 spi
+    // 6431 @ 192k mana
+    
+    // 100
+    // 1280 @ 782
+    // 7726 @ 32k mana
+    
+    // 90
+    // 296 @ 220
+    // 2109 @ 7400 mana
+    
+    static public double getSpiritRegen(int spirit) {
+        return 0;
+    }
+    
+    static public double getRegenPerMana(int playerLevel, SpecT spec) {
+        //0.8%/sec for level 1-90.
+        //Drops by 0.04%/sec per level past 90.
+        //0.4%/sec at level 100.        
+        
+        if (playerLevel <= 90) {
+            return 0.008;
+        } else if (playerLevel >= 100) {
+            return 0.004;
+        } else {
+            return 0.008 - 0.004 * (playerLevel - 90);
+        }
+    }    
     
 }

@@ -4,6 +4,7 @@ public class ItemFlags {
 
     static public class F1 {        
         static public final int HEROIC              = 0x00000008;
+        static public final int DEPRECATED          = 0x00000010; // unconfirmed
         static public final int UNIQUE_EQUIPPED     = 0x00080000;
         static public final int USEABLE_IN_ARENA    = 0x00200000;
         static public final int BIND_TO_ACCOUNT     = 0x08000000;

@@ -102,7 +102,7 @@ public class IconCache {
     }
     
     public void useOfficialBlank() {
-        get("inv_misc_questionmark", (key, error, icon) -> {
+        get("inv_misc_questionmark", false, (key, error, icon) -> {
             if (icon != null) {
                 synchronized (guard) {
                     blank = icon;
@@ -111,10 +111,13 @@ public class IconCache {
         });
     }
         
-    public void get(String key, Callback cb) { // do we need to support null cb?  
+    public void get(String key, Callback cb) { get(key, true, cb); }
+    public void get(String key, boolean triggerBlank, Callback cb) { // do we need to support null cb?  
         synchronized (guard) {
             if (key == null) {
-                cb.got(key, null, blank);
+                if (triggerBlank) {
+                    cb.got(key, null, blank);
+                }
                 return;
             }
             ImageIcon store = map.get(key);
@@ -131,8 +134,10 @@ public class IconCache {
                 set = new HashSet<>();
                 cbMap.put(key, set);
             }
-            set.add(cb);                
-            cb.got(key, null, blank);
+            set.add(cb);    
+            if (triggerBlank) {
+                cb.got(key, null, blank);
+            }
         }
     } 
     

@@ -2,7 +2,7 @@ package com.antistupid.warbase.utils;
 
 import java.util.Comparator;
 
-public class Misc {
+public class CompareHelp {
     
     static public int compareForNullAtBottom(Object a, Object b) {
         if (a == null) {

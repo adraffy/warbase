@@ -142,6 +142,17 @@ abstract public class TypeT {
             }            
             return bits;
         }
+        
+        public T first(long bits) { return nth(bits, 0); }
+        public T nth(long bits, int index) {
+            for (int i = 0; i < types.length && bits != 0; i++, bits >>= 1) {
+                if ((bits & 1L) == 1L && index-- == 0) {
+                    return types[i];
+                }        
+            }
+            return null;
+        }
+        
     }
     
     // ---
@@ -244,7 +255,7 @@ abstract public class TypeT {
         int span = 1 + keys[n - 1] - keyOffset;
         if (span == n) {
             return new Dense<>(desc, sorted, keyOffset);
-        } else if (span <= 2 * n) { 
+        } else if (span <= 2 * n && span > 0) { 
             int[] where = new int[span];
             Arrays.fill(where, -1);
             for (int i = 0; i < n; i++) {

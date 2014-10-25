@@ -9,6 +9,8 @@ public class SpecT extends TypeT {
     static public final double ARMOR_SPECIALIZATION_COEFF = 1.05;
     static public final double ATTUNE_RATING_COEFF = 1.05;
     
+    static public final double CRITICAL_STRIKES = 0.1; // +10% crit
+    
     public final int specIndex;
     public final ClassT classType;
     public final String fullName;
@@ -38,13 +40,6 @@ public class SpecT extends TypeT {
         fullName = name + " " + classType.name;
     }
         
-    public boolean hasAttackPowerMasteryBonus() {
-        return role == SpecRoleT.TANK;
-    }
-    
-    public boolean hasCritialStrikes() {
-        return primaryStat == StatT.AGI; // hunter, rogue, feral/guard, enh, wind/brew
-    }
         
     static public final SpecT BLOOD        = new SpecT(250, 0, "Blood",           ClassT.DK,     ArmorT.PLATE, StatT.STR, RatingT.MULTI, false, true, SpecRoleT.TANK, "spell_deathknight_bloodpresence", 2);
     static public final SpecT FROST_DK     = new SpecT(251, 1, "Frost",           ClassT.DK,     ArmorT.PLATE, StatT.STR, RatingT.HASTE, false, true, SpecRoleT.DAMAGE, "spell_deathknight_frostpresence", 2);
@@ -90,8 +85,7 @@ public class SpecT extends TypeT {
     static public final SpecT ARMS         = new SpecT( 71, 0, "Arms",            ClassT.WAR, ArmorT.PLATE, StatT.STR, RatingT.MASTERY, false, true, SpecRoleT.DAMAGE, "ability_warrior_savageblow", 1.4);
     static public final SpecT FURY         = new SpecT( 72, 1, "Fury",            ClassT.WAR, ArmorT.PLATE, StatT.STR, RatingT.CRIT, false, true, SpecRoleT.DAMAGE, "ability_warrior_innerrage", 1.4);
     static public final SpecT PROT         = new SpecT( 73, 2, "Protection",      ClassT.WAR, ArmorT.PLATE, StatT.STR, RatingT.MASTERY, false, true, SpecRoleT.TANK, "ability_warrior_defensivestance", 1.5); 
-        
-    
+            
     static public final Container<SpecT> db = new Container<>(SpecT.class);
     static public final TypeNames<SpecT> names = new TypeNames<>(db.types, true);
 
@@ -101,5 +95,15 @@ public class SpecT extends TypeT {
         }
     }
     
+    /*
+    static public boolean hasAttackPowerMasteryBonus(SpecT spec) {
+        return spec != null && spec.role == SpecRoleT.TANK;
+    }
+    */
     
+    static public boolean hasCritialStrikes(SpecT spec) {
+        return spec != null && spec.primaryStat == StatT.AGI; // hunter, rogue, feral/guard, enh, wind/brew
+    }
+    
+   
 }

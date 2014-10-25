@@ -1,13 +1,8 @@
 package com.antistupid.warbase.data;
 
 public class PlayerScaling {
-
-    // eg. [261.0, 170000.0, 60.0, 80.0, 100.0, 160680.0]
     
-    /*   nt util::class_id( player_e type )
-{
-  switch ( type )
-  {
+    /*
     case WARRIOR:      return  1;
     case PALADIN:      return  2;
     case HUNTER:       return  3;
@@ -23,12 +18,13 @@ public class PlayerScaling {
     case PLAYER_SPECIAL_SCALE2: return 13;
     case PLAYER_SPECIAL_SCALE3: return 14;
     case PLAYER_SPECIAL_SCALE4: return 15;
-    default:           return 0;
-  }*/
+    */
     
     // 0-5 (PLAYER_SPECIAL_SCALE 1-6)
     
-    
+    static public int max(int scalingLevelMax, int playerLevel) {
+        return scalingLevelMax > 0 && playerLevel > scalingLevelMax ? scalingLevelMax : playerLevel;
+    }
     
     static public float get(int playerLevel, int scalingId) {
         if (playerLevel < 1) {

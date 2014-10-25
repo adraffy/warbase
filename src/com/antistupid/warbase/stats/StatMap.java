@@ -5,9 +5,19 @@ import com.antistupid.warbase.types.StatT;
 
 public class StatMap {
     
+    static public StatMap recycle(StatMap other) {
+        if (other == null) {
+            return new StatMap();
+        } else {
+            other.clear();
+            return other;
+        }
+    }
 
     //long mask;
     static private StatT[] STATS = StatT.db.types;
+    
+    
     
     final int[] total = new int[STATS.length];    
  
@@ -56,22 +66,38 @@ public class StatMap {
         return n;
     }
     
+    
+    public int get(StatT stat, boolean effective) {
+        return effective ? getEffective(stat) : getRaw(stat);
+    } 
     public int getEffective(StatT stat) {
         if (stat instanceof StatT.Fundamental) {
             int sum = 0;
             for (StatT x: ((StatT.Fundamental)stat).sources) {
-                sum += get(x);
+                sum += getRaw(x);
             }
             return sum;
         } else {
-            return get(stat);
+            return getRaw(stat);
         }        
-    }
-    
-    public int get(StatT stat) {
+    }   
+    public int getRaw(StatT stat) {
         return total[stat.index];
     }
         
+    @FunctionalInterface
+    static public interface ForEach {
+        void apply(StatT stat, int value);
+    }
+    
+    public void forEach(ForEach x) {
+        for (int i = 0; i < total.length; i++) {
+            int t = total[i];
+            if (t != 0) {
+                x.apply(STATS[i], t);
+            }            
+        }
+    }
     
     
     // return number of stats added

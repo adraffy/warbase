@@ -38,4 +38,6 @@ public class WeaponT extends TypeT {
     static public final long TRIVIAL = db.encode(FISHING_POLE, MISC);    
     static public final long TITANS_GRIP = db.encode(TWO_HAND_AXE, TWO_HAND_MACE, TWO_HAND_SWORD, STAFF, POLEARM);
 
+    static public final int FIST_SPEED = 2000;
+    
 }

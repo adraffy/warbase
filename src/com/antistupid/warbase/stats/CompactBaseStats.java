@@ -63,7 +63,7 @@ public class CompactBaseStats {
         return bits;
     }
     
-    static public long encode(StatMap stats) { return encode(stats::get); }    
+    static public long encode(StatMap stats) { return encode(stats::getRaw); }    
     static public long encode(ToIntFunction<StatT> f) {
         long bits = 0;
         for (int i = 0; i < STATS.length; i++) {   

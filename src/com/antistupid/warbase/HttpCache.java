@@ -13,7 +13,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayDeque;
 import java.util.Arrays;
-import com.antistupid.warbase.utils.Misc;
+import com.antistupid.warbase.utils.CompareHelp;
 
 public class HttpCache {
 
