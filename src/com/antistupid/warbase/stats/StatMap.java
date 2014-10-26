@@ -13,14 +13,28 @@ public class StatMap {
             return other;
         }
     }
+    
+    static public boolean areSame(StatMap a, StatMap b) {
+        if (a == null) {
+            return b == null;
+        } else if (b == null) {
+            return false;
+        } else {
+            return Arrays.equals(a.total, b.total);
+        }
+    }
 
     //long mask;
-    static private StatT[] STATS = StatT.db.types;
-    
-    
+    static public StatT[] STATS = StatT.db.types;
     
     final int[] total = new int[STATS.length];    
  
+    public StatMap copy() {
+        StatMap copy = new StatMap();
+        System.arraycopy(total, 0, copy.total, 0, total.length);
+        return copy;
+    }
+    
     public void add(StatMap other) {
         for (int i = 0; i < total.length; i++) {
             total[i] += other.total[i];
@@ -41,10 +55,6 @@ public class StatMap {
     
     public void clear() {
         Arrays.fill(total, 0);
-    }
-    
-    public boolean isSame(StatMap other) {
-        return other != null && Arrays.equals(total, other.total);
     }
     
     public boolean hasAny() {

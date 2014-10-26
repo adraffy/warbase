@@ -50,6 +50,22 @@ public class IconCache {
     public final HttpCache hc;
     public final String urlFmt; // single $ replacement
     
+    // offical blizzard icon source
+    
+    static public IconCache blizz18(HttpCache hc) { return new IconCache(hc, 18, 1, "http://media.blizzard.com/wow/icons/18/$.jpg|dir=18"); }
+    static public IconCache blizz38(HttpCache hc) { return new IconCache(hc, 36, 1, "http://media.blizzard.com/wow/icons/18/$.jpg|dir=36"); }
+    static public IconCache blizz58(HttpCache hc) { return new IconCache(hc, 56, 1, "http://media.blizzard.com/wow/icons/18/$.jpg|dir=56"); }
+    
+    static public IconCache blizz18_retinaSupport(HttpCache hc) {
+        if (SystemHelp.isRetina()) {
+            return new IconCache(hc, 18, 2, "http://media.blizzard.com/wow/icons/18/$.jpg|dir=36");
+        } else {
+            return blizz18(hc);
+        }
+    }
+    
+    // wowhead icon source
+    
     static public IconCache zam18(HttpCache hc) { return new IconCache(hc, 18, 1, "http://wow.zamimg.com/images/wow/icons/small/$.jpg|dir=18"); }
     static public IconCache zam36(HttpCache hc) { return new IconCache(hc, 36, 1, "http://wow.zamimg.com/images/wow/icons/medium/$.jpg|dir=36"); }
     static public IconCache zam56(HttpCache hc) { return new IconCache(hc, 56, 1, "http://wow.zamimg.com/images/wow/icons/large/$.jpg|dir=56"); }
@@ -61,6 +77,8 @@ public class IconCache {
             return zam18(hc);
         }
     }
+    
+    // ---
     
     public IconCache(HttpCache hc, int size, int scale, String urlFmt) {
         this.hc = hc;

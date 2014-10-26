@@ -17,13 +17,12 @@ import com.antistupid.warbase.types.EquipT;
 import com.antistupid.warbase.types.QualityT;
 import com.antistupid.warbase.types.RatingT;
 import com.antistupid.warbase.types.SpecT;
+import com.antistupid.warbase.utils.SystemHelp;
 
 public class Main {
 
     public static void main(String[] args) {
  
-        //System.out.println(EquipT.CHEST.)
-        
         if (true) {
             
             for (int i = 1; i < 100; i++) {
@@ -71,7 +70,7 @@ public class Main {
         System.out.println("Red socket accepts gems: " + SocketT.RED.gems(false));
         // Red socket accepts gems: [Red, Blue, Yellow, Purple, Green, Orange, Prismatic]
     
-        ///System.out.println(ArmorCurve.getMax(586, QualityT.GREEN, ArmorT.LEATHER, EquipT.SHOULDER));
+        ///System.out.println(ArmorCurve.getMax(586, QualityT.UNCOMMON, ArmorT.LEATHER, EquipT.SHOULDER));
         // 73
         
         //System.out.println(ArmorCurve.getMax(615, QualityT.BLUE, ArmorT.LEATHER, EquipT.LEGS));

@@ -32,7 +32,9 @@ public class SystemHelp {
         }        
     }
          
-    static public boolean isRetina() {
+    // we cant statically define this because this bullshit invokes
+    // awt/toolkit init which causes bullshit startup delays for headless apps
+    static public boolean isRetina() { 
         GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         try {
             Field field = graphicsDevice.getClass().getDeclaredField("scale");
@@ -47,19 +49,56 @@ public class SystemHelp {
 	}
     }
     
+    static private File coerceFile(Object obj) {        
+        if (obj instanceof File) {
+            return (File)obj;
+        } else if (obj instanceof Path) {
+            return ((Path)obj).toFile();
+        } else if (obj instanceof String) {
+            return new File(obj.toString());
+        } else {
+            return null;
+        }
+    }
+    
+    static public boolean showFile(Object obj) {
+        File f = coerceFile(obj);
+        if (f == null) {
+            return false;
+        } else if (!f.isDirectory()) {
+            if (WIN) {
+                try {
+                    Process proc = Runtime.getRuntime().exec("explorer /root," + f.getAbsolutePath());
+                    try {
+                        proc.waitFor();
+                    } catch (InterruptedException stfu) {
+                    }
+                    return true;
+                } catch (IOException err) {
+                    return false;
+                }
+            } else if (MAC) {
+                try {
+                    ProcessBuilder pb = new ProcessBuilder("/usr/bin/open", "-R", f.getAbsolutePath());                    
+                    Process proc = pb.start();
+                    try {
+                        proc.waitFor();
+                    } catch (InterruptedException stfu) {
+                    }
+                    return true;
+                } catch (IOException err) {
+                    return false;
+                }
+            }
+        }
+        return openFile(f);
+    }
     
     static public boolean openFile(Object obj) {
-        File f;
-        if (obj instanceof File) {
-            f = (File)obj;
-        } else if (obj instanceof Path) {
-            f = ((Path)obj).toFile();
-        } else if (obj instanceof String) {
-            f = new File(obj.toString());
-        } else {
+        File f = coerceFile(obj);
+        if (f == null) {
             return false;
-        }
-        if (WIN && f.isDirectory()) {
+        } else if (WIN && f.isDirectory()) {
             try {
                 Process proc = Runtime.getRuntime().exec("explorer /root," + f.getAbsolutePath());
                 try {
@@ -74,7 +113,7 @@ public class SystemHelp {
             try {
                 Desktop.getDesktop().open(f);
                 return true;
-            } catch (IOException err) {
+            } catch (Exception err) {
                 return false;
             }
         }
