@@ -38,7 +38,7 @@ public class IconCache {
     
     static private final ImageIcon requested = new ImageIcon();
     
-    private final TreeMap<String,ImageIcon> map = new TreeMap<>();    
+    private final TreeMap<String,ImageIcon> iconMap = new TreeMap<>();    
     private final TreeMap<String,HashSet<Callback>> cbMap = new TreeMap<>();
     
     private final Object guard = new Object();
@@ -138,13 +138,13 @@ public class IconCache {
                 }
                 return;
             }
-            ImageIcon store = map.get(key);
+            ImageIcon store = iconMap.get(key);
             if (store != null && store != requested) {
                 cb.got(key, null, store);    
                 return;
             }  
             if (store == null) {
-                map.put(key, requested);                
+                iconMap.put(key, requested);                
                 hc.fetchData(key, urlFmt.replace("$", key), 0, true, this::gotData);                
             }          
             HashSet<Callback> set = cbMap.get(key);
@@ -178,7 +178,7 @@ public class IconCache {
         }        
         HashSet<Callback> set;
         synchronized (guard) {
-            map.put(key, result);
+            iconMap.put(key, result);
             set = cbMap.remove(key);
         }
         if (set != null) {

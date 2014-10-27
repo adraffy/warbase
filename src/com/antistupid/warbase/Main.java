@@ -23,13 +23,19 @@ public class Main {
 
     public static void main(String[] args) {
  
+        if (true) {            
+            System.out.println(RaceT.getDraenei_heroicPresence_agiIntStr(100));
+            System.out.println(RaceT.getHuman_theHumanSpirit_versa(100));
+            System.out.println(RaceT.getOrc_bloodFury_ap(100));
+            System.out.println(RaceT.getTauren_endurance_sta(100));            
+            return;
+        }
+        
         if (true) {
-            
             for (int i = 1; i < 100; i++) {
                 int wut = ArmorCurve.get(i, QualityT.POOR, ArmorT.PLATE, EquipT.CHEST);
                 System.out.println(String.format("%4d: %d", i, wut));
             }
-            
             return;
         }
         

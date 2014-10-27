@@ -26,6 +26,10 @@ public class PlayerScaling {
         return scalingLevelMax > 0 && playerLevel > scalingLevelMax ? scalingLevelMax : playerLevel;
     }
     
+    static public int getInt(int playerLevel, int scalingId, double mod) {
+        return (int)(0.5 + get(playerLevel, scalingId) * mod);
+    }
+    
     static public float get(int playerLevel, int scalingId) {
         if (playerLevel < 1) {
             throw new IllegalArgumentException("PlayerLevel Too Low: " + playerLevel);
